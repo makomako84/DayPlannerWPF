@@ -13,6 +13,17 @@ namespace Galimsky_DayPlanner
         private string _text;
         private DateTime _time;
 
+        private int _hour;
+        public int Hour
+        {
+            get { return _hour; }
+            private set
+            {
+                _hour = value;
+                RaisePropertyChanged("Hour");
+            }
+        }
+
         public string Header
         {
             get { return _header; }
@@ -54,12 +65,14 @@ namespace Galimsky_DayPlanner
         {
             Header = header;
             Time = time;
+            Hour = Time.Hour;
         }
         public TaskData(string header, string text, DateTime time)
         {
             Header = header;
             Text = text;
             Time = time;
+            Hour = Time.Hour;
         }
 
         #region INotifyPropertyChanged implementation
