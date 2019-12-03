@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Xml.Linq;
 
 namespace Galimsky_DayPlanner
 {
@@ -12,17 +13,6 @@ namespace Galimsky_DayPlanner
         private string _header;
         private string _text;
         private DateTime _time;
-
-        private int _hour;
-        public int Hour
-        {
-            get { return _hour; }
-            private set
-            {
-                _hour = value;
-                RaisePropertyChanged("Hour");
-            }
-        }
 
         public string Header
         {
@@ -65,14 +55,28 @@ namespace Galimsky_DayPlanner
         {
             Header = header;
             Time = time;
-            Hour = Time.Hour;
         }
         public TaskData(string header, string text, DateTime time)
         {
             Header = header;
             Text = text;
             Time = time;
-            Hour = Time.Hour;
+        }
+
+        public static TaskData GetFromXml(XElement elem)
+        {
+            DateTime dateTime = DateTime.Parse(elem.Attribute("DateTime").Value);
+            string header = elem.Element("header").Value;
+            string text = elem.Element("text").Value;
+            return new TaskData(header, text, dateTime);
+        }
+        public XElement ToXml()
+        {
+            XElement root = new XElement("task");
+            root.Add(new XAttribute("DateTime", String.Format("{0:s}",Time)));
+            root.Add(new XElement("header", this.Header));
+            root.Add(new XElement("text", this.Text));
+            return root;
         }
 
         #region INotifyPropertyChanged implementation

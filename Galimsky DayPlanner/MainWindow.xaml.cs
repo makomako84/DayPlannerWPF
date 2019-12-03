@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Xml.Linq;
+using System.IO;
 
 namespace Galimsky_DayPlanner
 {
@@ -23,7 +25,6 @@ namespace Galimsky_DayPlanner
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private DaysRepo _dayDataRepo;
 
         private ObservableCollection<TaskData> _tasks;
         public ObservableCollection<TaskData> Tasks
@@ -34,6 +35,7 @@ namespace Galimsky_DayPlanner
                 _tasks = value;
             }
         }
+        #region ItemsView imp.
         public ICollectionView ItemsView
         {
             get
@@ -44,41 +46,68 @@ namespace Galimsky_DayPlanner
 
         public bool Filter(DateTime dt)
         {
-            return dt.Year == SelectedDate.Year && dt.Month == SelectedDate.Month && dt.Day == SelectedDate.Day;
+            return CompareDate(dt, SelectedDate);
         }
 
-        private DateTime _selectedDate;
-        public DateTime SelectedDate
+        private void ItemsViewInit()
         {
-            get { return _selectedDate; }
-            set
-            {
-                _selectedDate = value;
-                RaisePropertyChanged("SelectedDate");
-                ItemsView.Refresh();
-            }
+            ItemsView.Filter = new Predicate<object>(t => Filter((t as TaskData).Time));
+            ItemsView.SortDescriptions.Add(new SortDescription("Time", ListSortDirection.Ascending));
         }
+        #endregion
 
-
-
-
+        private bool CompareDate(DateTime dt1, DateTime dt2)
+        {
+            return dt1.Year == dt2.Year && dt1.Month == dt2.Month && dt1.Day == dt2.Day;
+        }
 
         public MainWindow()
         {
-            _dayDataRepo = DaysRepo.Instance;
-            Test();
+            XmlLoad();
+            
             InitializeComponent();
             DataContext = this;
             SelectedDate = DateTime.Now;
-
-                        
-
-            ItemsView.Filter = new Predicate<object>(t => Filter((t as TaskData).Time));
-            ItemsView.SortDescriptions.Add(new SortDescription("Time", ListSortDirection.Ascending));
-            
-            
+            ItemsViewInit();
+            //XMLSave();
             
         }
+
+        #region XML read imp
+        XElement _root;
+        public void XmlLoad()
+        {
+            _root = XElement.Load(@"data.xml");
+            Tasks = new ObservableCollection<TaskData>(GetData());
+
+        }
+        public void XMLSave()
+        {
+            _root = OutData();
+            using (StringWriter sw = new StringWriter())
+            {
+                _root.Save("data.xml");
+            }
+        }
+        public XElement OutData()
+        {
+            XElement root = new XElement("data");
+            foreach(TaskData elem in Tasks)
+            {
+                root.Add(elem.ToXml());
+            }
+            return root;
+        }
+        public List<TaskData> GetData()
+        {
+            List<TaskData> res = new List<TaskData>();
+            foreach (XElement item in _root.Elements())
+            {
+                res.Add(TaskData.GetFromXml(item));
+            }
+            return res;
+        }
+        #endregion
 
         private void Test()
         {
@@ -118,10 +147,24 @@ namespace Galimsky_DayPlanner
             
         }
 
+
+        #region selected date imp.
+        private DateTime _selectedDate;
+        public DateTime SelectedDate
+        {
+            get { return _selectedDate; }
+            set
+            {
+                _selectedDate = value;
+                RaisePropertyChanged("SelectedDate");
+                ItemsView.Refresh();
+            }
+        }
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedDate = mainCalendar.SelectedDate.GetValueOrDefault();
         }
+        #endregion
 
         #region INotifyPropertyChanged imp.
         public event PropertyChangedEventHandler PropertyChanged;
@@ -129,9 +172,20 @@ namespace Galimsky_DayPlanner
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
+
         #endregion
 
+        private void DayTasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count <= 0)
+                return;
+            MessageBox.Show("sdgfsdgs");
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            XMLSave();
+        }
     }
 
 
