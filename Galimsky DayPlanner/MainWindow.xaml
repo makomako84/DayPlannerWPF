@@ -24,16 +24,16 @@
         <Calendar x:Name="mainCalendar" Grid.Column="1" Margin="0,25,0,1" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
 
         <!--Current Day Items-->
-        <DataGrid  x:Name="DayTasksList" ItemsSource="{Binding ItemsView}" Grid.Column="0" Margin="15">
-            <!--<ListBox.ItemTemplate>
+        <ListBox x:Name="DayTasksList" ItemsSource="{Binding ItemsView}" Grid.Column="0" Margin="15">
+            <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>-->
-            <TextBox  Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"/>
-                        <!--<TextBlock Text="{Binding Header}"/>-->
-                    <!--</StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Time, StringFormat='{}{0:hh:mm}'}" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Header}"/>
+                    </StackPanel>
                 </DataTemplate>
-            </ListBox.ItemTemplate>-->
-        </DataGrid>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
 
     </Grid>

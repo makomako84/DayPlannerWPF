@@ -40,9 +40,9 @@ namespace Galimsky_DayPlanner
             get { return CollectionViewSource.GetDefaultView(Tasks); }
         }
 
-        public bool Filter(TaskData taskData)
+        public bool Filter(DateTime dt)
         {
-            return taskData.Time.Day == SelectedDate.Day;
+            return dt.Year == SelectedDate.Year && dt.Month == SelectedDate.Month && dt.Day == SelectedDate.Day;
         }
 
         private DateTime _selectedDate;
@@ -68,20 +68,20 @@ namespace Galimsky_DayPlanner
             Test();
             InitializeComponent();
             DataContext = this;
-            ItemsView.Filter = new Predicate<object>(t => Filter(t as TaskData));
+            ItemsView.Filter = new Predicate<object>(t => Filter((t as TaskData).Time));
         }
 
         private void Test()
         {
-            TaskData task1 = new TaskData("Make new videogame", new DateTime(2019, 9, 3, 12, 59, 0));
+            TaskData task1 = new TaskData("Make new videogame", new DateTime(2019, 11, 3, 12, 59, 0));
             task1.Text = $"To Hold some beer for my friend, and wait when Trotsky will shoot in his leg {Environment.NewLine}Thats what I call wild west!";
 
-            TaskData task2 = new TaskData("Get out of REFERAT", new DateTime(2019, 12, 3, 9, 8, 0));
+            TaskData task2 = new TaskData("Get out of REFERAT", new DateTime(2019, 12, 4, 9, 8, 0));
 
-            TaskData task3 = new TaskData("Hold a beer for a Trotsky", new DateTime(2019, 12, 3, 15, 4, 3));
+            TaskData task3 = new TaskData("Hold a beer for a Trotsky", new DateTime(2019, 12, 4, 15, 4, 3));
             task3.Text = "Yeeeeaeaeaeh, today wi well meat Stolen";
 
-            TaskData task4 = new TaskData("Some text", new DateTime(2019, 12, 3, 15, 25, 3));
+            TaskData task4 = new TaskData("Some text", new DateTime(2019, 12, 5, 15, 25, 3));
             task4.Text = "Yeeeeaeaeaeh, today wi well meat Stolen";
 
             Tasks = new ObservableCollection<TaskData>()
@@ -91,6 +91,7 @@ namespace Galimsky_DayPlanner
                 task3,
                 task4,
             };
+            SelectedDate = DateTime.Now;
         }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
