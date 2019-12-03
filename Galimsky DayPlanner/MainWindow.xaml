@@ -1,0 +1,40 @@
+﻿<Window x:Class="Galimsky_DayPlanner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Galimsky_DayPlanner"
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="768" Width="1024        ">
+    <!--<Window.Resources>
+        <ObjectDataProvider x:Key="dayTaskList" ObjectType="{x:Type local:DaysRepo}" MethodName="GetTasks"/>
+        <CollectionViewSource x:Key="dayTaskListCVS" Source="{StaticResource dayTaskList}">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="Time"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+        
+    </Window.Resources>-->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="255"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Calendar x:Name="mainCalendar" Grid.Column="1" Margin="0,25,0,1" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
+
+        <!--Current Day Items-->
+        <DataGrid  x:Name="DayTasksList" ItemsSource="{Binding ItemsView}" Grid.Column="0" Margin="15">
+            <!--<ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>-->
+            <TextBox  Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"/>
+                        <!--<TextBlock Text="{Binding Header}"/>-->
+                    <!--</StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>-->
+        </DataGrid>
+
+
+    </Grid>
+</Window>
