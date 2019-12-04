@@ -15,13 +15,23 @@ using System.Windows.Shapes;
 
 namespace Galimsky_DayPlanner
 {
-    
-    public enum TaskEditorMode { New, Edit}
+
+    public enum TaskEditorMode { New, Edit }
     /// <summary>
     /// Interaction logic for TaskEditWindow.xaml
     /// </summary>
     public partial class TaskEditWindow : Window, INotifyPropertyChanged
     {
+        private static TaskEditWindow _inst;
+        public static TaskEditWindow Inst
+        {
+            get
+            {
+                if (_inst == null)
+                    _inst = new TaskEditWindow();
+                return _inst;
+            }
+        }
 
         #region INotifyPropertyChanged imp.
         public event PropertyChangedEventHandler PropertyChanged;
@@ -56,7 +66,12 @@ namespace Galimsky_DayPlanner
             }
         }
 
-        public TaskEditWindow(TaskEditorMode taskEditorMode)
+
+        private TaskEditWindow()
+        {
+            InitializeComponent();
+        }
+        public void ConfigureWindow(TaskEditorMode taskEditorMode)
         {
             _taskEditorMode = taskEditorMode;
 
@@ -68,7 +83,7 @@ namespace Galimsky_DayPlanner
                 Selection = DaysRepo.Instance.DayTaskListSelection;
                 EditedDateProp = new EditableDate(Selection.Time);
             }
-            else if(_taskEditorMode == TaskEditorMode.New)
+            else if (_taskEditorMode == TaskEditorMode.New)
             {
                 Selection = TaskData.CreateTempTask(DaysRepo.Instance.SelectedDate);
                 EditedDateProp = new EditableDate(Selection.Time);
@@ -82,11 +97,11 @@ namespace Galimsky_DayPlanner
                 TaskData foundTask = DaysRepo.Instance.Tasks.Where(x => x.Id == Selection.Id).ToList()[0];
                 foundTask.Header = Selection.Header;
                 foundTask.Text = Selection.Text;
-                foundTask.Time = EditableDate.GetFullDateTime(Selection.Time,EditedDateProp);
+                foundTask.Time = EditableDate.GetFullDateTime(Selection.Time, EditedDateProp);
             }
-            else if(_taskEditorMode == TaskEditorMode.New)
+            else if (_taskEditorMode == TaskEditorMode.New)
             {
-                DaysRepo.Instance.Tasks.Add(TaskData.Create(Selection.Header, Selection.Text, EditableDate.GetFullDateTime(Selection.Time, EditedDateProp)));
+                DaysRepo.Instance.Tasks.Add(TaskData.Create(Selection.Header, Selection.Text, EditableDate.GetFullDateTime(Selection.Time, EditedDateProp), Selection.IsDone));
             }
         }
 

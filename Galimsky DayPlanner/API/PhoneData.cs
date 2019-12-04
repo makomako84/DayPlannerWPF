@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-using System.Xml.Linq;
 
 namespace Galimsky_DayPlanner
 {
-    public class PhoneData : BaseData, INotifyPropertyChanged
+    public class PhoneData : INotifyPropertyChanged
     {
+        private static int _idCounter = -1;
+        public int ID { private set; get; }
 
         private string _number;
         public string Number
@@ -38,18 +39,14 @@ namespace Galimsky_DayPlanner
         }
         public PhoneData Create(string number, string name)
         {
-            return new PhoneData() {ID = GetNewId(), Number = number, Name =  name };
+            return new PhoneData() { ID = GetNewId(), Number = number, Name = name };
         }
 
-        public override BaseData InitFromXml(XElement elem)
+        private static int GetNewId()
         {
-            throw new NotImplementedException();
+            return _idCounter++;
         }
 
-        public override XElement ToXml()
-        {
-            throw new NotImplementedException();
-        }
 
         #region INotifyPropertyChanged imp.
         public event PropertyChangedEventHandler PropertyChanged;
@@ -57,8 +54,6 @@ namespace Galimsky_DayPlanner
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
-
-
 
         #endregion
     }
