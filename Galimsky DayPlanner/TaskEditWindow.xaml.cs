@@ -22,6 +22,16 @@ namespace Galimsky_DayPlanner
     /// </summary>
     public partial class TaskEditWindow : Window, INotifyPropertyChanged
     {
+        private static TaskEditWindow _inst;
+        public static TaskEditWindow Inst
+        {
+            get
+            {
+                if (_inst == null)
+                    _inst = new TaskEditWindow();
+                return _inst;
+            }
+        }
 
         #region INotifyPropertyChanged imp.
         public event PropertyChangedEventHandler PropertyChanged;
@@ -56,7 +66,12 @@ namespace Galimsky_DayPlanner
             }
         }
 
-        public TaskEditWindow(TaskEditorMode taskEditorMode)
+
+        private TaskEditWindow()
+        {
+            InitializeComponent();
+        }
+        public void ConfigureWindow(TaskEditorMode taskEditorMode)
         {
             _taskEditorMode = taskEditorMode;
 
@@ -86,7 +101,7 @@ namespace Galimsky_DayPlanner
             }
             else if(_taskEditorMode == TaskEditorMode.New)
             {
-                DaysRepo.Instance.Tasks.Add(TaskData.Create(Selection.Header, Selection.Text, EditableDate.GetFullDateTime(Selection.Time, EditedDateProp)));
+                DaysRepo.Instance.Tasks.Add(TaskData.Create(Selection.Header, Selection.Text, EditableDate.GetFullDateTime(Selection.Time, EditedDateProp),Selection.IsDone));
             }
         }
 

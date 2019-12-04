@@ -16,6 +16,7 @@ namespace Galimsky_DayPlanner
         private string _header;
         private string _text;
         private DateTime _time;
+        private bool _isDone;
 
         public string Header
         {
@@ -45,31 +46,43 @@ namespace Galimsky_DayPlanner
                 RaisePropertyChanged("Text");
             }
         }
+
+        public bool IsDone
+        {
+            get { return _isDone; }
+            set
+            {
+                _isDone = value;
+                RaisePropertyChanged("IsDone");
+            }
+        }
         private TaskData(DateTime time)
         {
             Time = time;
         }
-        private TaskData(string header, DateTime time, int id)
+        private TaskData(string header, DateTime time, bool isDone, int id)
         {
             Header = header;
             Time = time;
             Id = id;
+            IsDone = isDone;
         }
-        private TaskData(string header, string text, DateTime time, int id)
+        private TaskData(string header, string text, DateTime time, bool isDone, int id)
         {
             Header = header;
             Text = text;
             Time = time;
             Id = id;
+            IsDone = isDone;
         }
 
-        public static TaskData Create(string header, DateTime time)
+        public static TaskData Create(string header, DateTime time, bool isDone)
         {
-            return new TaskData(header, time, GetNewId());
+            return new TaskData(header, time, isDone, GetNewId());
         }
-        public static TaskData Create(string header, string text, DateTime time)
+        public static TaskData Create(string header, string text, DateTime time, bool isDone)
         {
-            return new TaskData(header, text, time, GetNewId());
+            return new TaskData(header, text, time,isDone, GetNewId());
         }
         public static TaskData CreateTempTask(DateTime time)
         {
@@ -86,7 +99,8 @@ namespace Galimsky_DayPlanner
             DateTime dateTime = DateTime.Parse(elem.Attribute("DateTime").Value);
             string header = elem.Element("header").Value;
             string text = elem.Element("text").Value;
-            return TaskData.Create(header, text, dateTime);
+            bool isDone = elem.Element("IsDone") !=null ? true : false;
+            return TaskData.Create(header, text, dateTime, isDone);
         }
         
         public XElement ToXml()
@@ -95,6 +109,8 @@ namespace Galimsky_DayPlanner
             root.Add(new XAttribute("DateTime", String.Format("{0:s}",Time)));
             root.Add(new XElement("header", this.Header));
             root.Add(new XElement("text", this.Text));
+            if(IsDone)
+                root.Add(new XElement("IsDone"));
             return root;
         }
 

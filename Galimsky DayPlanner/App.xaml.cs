@@ -15,7 +15,9 @@ namespace Galimsky_DayPlanner
     {
         public App()
         {
-            XmlReader.Instance.XmlLoad();
+            XmlReader.Instance.XmlLoad("data.xml");
+            DaysRepo.Instance.ItemsViewInit();
+            DaysRepo.Instance.SelectedDate = DateTime.Now;
         }
         private void Application_Exit(object sender, ExitEventArgs e)
         {

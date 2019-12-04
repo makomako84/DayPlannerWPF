@@ -32,19 +32,11 @@ namespace Galimsky_DayPlanner
             _repo = DaysRepo.Instance;
         }
 
-        public void XmlLoad()
+        public void XmlLoad(string datafileName)
         {
-            _root = XElement.Load(@"data.xml");
+            _root = XElement.Load($"{datafileName}");
             _repo.Tasks = new ObservableCollection<TaskData>(GetData());
 
-        }
-        public void XMLSave()
-        {
-            _root = OutData();
-            using (StringWriter sw = new StringWriter())
-            {
-                _root.Save("data.xml");
-            }
         }
         private XElement OutData()
         {
@@ -54,6 +46,16 @@ namespace Galimsky_DayPlanner
                 root.Add(elem.ToXml());
             }
             return root;
+        }
+
+
+        public void XMLSave()
+        {
+            _root = OutData();
+            using (StringWriter sw = new StringWriter())
+            {
+                _root.Save("data.xml");
+            }
         }
         private List<TaskData> GetData()
         {
