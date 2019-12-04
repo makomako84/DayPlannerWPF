@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Xml.Linq;
+
+namespace Galimsky_DayPlanner
+{
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : Application
+    {
+        public App()
+        {
+<<<<<<< HEAD
+            XElement dataFile = XElement.Load("data.xml");
+            XmlReader.Instance.SetFile(dataFile);
+            DaysRepo.Instance.ItemsViewInit();
+            DaysRepo.Instance.SelectedDate = DateTime.Now;
+=======
+            XmlReader.Instance.XmlLoad();
+>>>>>>> parent of 406f4d9... phone init, xmlreader prepare for poly
+        }
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            XmlReader.Instance.XMLSave();
+        }
+    }
+}

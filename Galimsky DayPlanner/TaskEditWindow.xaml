@@ -18,14 +18,7 @@
             </Grid.RowDefinitions>
 
 
-            <Grid Grid.Row="0" Grid.Column="0" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Text="{Binding Path= Selection.Header}" FontWeight="Bold" HorizontalAlignment="Left"/>
-                <CheckBox Grid.Column="1" IsChecked="{Binding Path=Selection.IsDone}" HorizontalAlignment="Right"/>
-            </Grid>
+            <TextBox Grid.Row="0" Grid.Column="0" Text="{Binding Path= Selection.Header}" FontWeight="Bold"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Width="80" Text="{Binding Path= Selection.Time, StringFormat=yyyy MMM d, Mode=OneWay}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" >
                 </TextBlock>

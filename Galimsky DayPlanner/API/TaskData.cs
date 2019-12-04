@@ -8,15 +8,12 @@ using System.Xml.Linq;
 
 namespace Galimsky_DayPlanner
 {
-    public class TaskData : INotifyPropertyChanged
+    public class TaskData : BaseData, INotifyPropertyChanged
     {
-        public int Id { get; private set; }
-        private static int _idCounter = -1;
 
         private string _header;
         private string _text;
         private DateTime _time;
-        private bool _isDone;
 
         public string Header
         {
@@ -46,6 +43,7 @@ namespace Galimsky_DayPlanner
                 RaisePropertyChanged("Text");
             }
         }
+<<<<<<< HEAD
 
         public bool IsDone
         {
@@ -56,61 +54,85 @@ namespace Galimsky_DayPlanner
                 RaisePropertyChanged("IsDone");
             }
         }
+        private TaskData()
+=======
         private TaskData(DateTime time)
+>>>>>>> parent of 406f4d9... phone init, xmlreader prepare for poly
         {
-            Time = time;
+            
         }
-        private TaskData(string header, DateTime time, bool isDone, int id)
+        private TaskData(string header, DateTime time, int id)
         {
             Header = header;
             Time = time;
-            Id = id;
+<<<<<<< HEAD
+            ID = id;
             IsDone = isDone;
+=======
+            Id = id;
+>>>>>>> parent of 406f4d9... phone init, xmlreader prepare for poly
         }
-        private TaskData(string header, string text, DateTime time, bool isDone, int id)
+        private TaskData(string header, string text, DateTime time, int id)
         {
             Header = header;
             Text = text;
             Time = time;
-            Id = id;
+<<<<<<< HEAD
+            ID = id;
             IsDone = isDone;
+=======
+            Id = id;
+>>>>>>> parent of 406f4d9... phone init, xmlreader prepare for poly
         }
 
-        public static TaskData Create(string header, DateTime time, bool isDone)
+        public static TaskData Create(string header, DateTime time)
         {
-            return new TaskData(header, time, isDone, GetNewId());
+            return new TaskData(header, time, GetNewId());
         }
-        public static TaskData Create(string header, string text, DateTime time, bool isDone)
+        public static TaskData Create(string header, string text, DateTime time)
         {
-            return new TaskData(header, text, time,isDone, GetNewId());
+            return new TaskData(header, text, time, GetNewId());
+        }
+        public static TaskData Create()
+        {
+            return new TaskData() { ID = GetNewId() };
         }
         public static TaskData CreateTempTask(DateTime time)
         {
-            return new TaskData(time);
+            return new TaskData() { Time = time };
         }
 
-        private static int GetNewId()
+        public override BaseData InitFromXml(XElement elem)
         {
-            return _idCounter++;
-        }
-
-        public static TaskData GetFromXml(XElement elem)
-        {
+<<<<<<< HEAD
+            Time = DateTime.Parse(elem.Attribute("DateTime").Value);
+            Header = elem.Element("header").Value;
+            Text = elem.Element("text").Value;
+            IsDone = elem.Element("IsDone") != null ? true : false;
+            return this;
+=======
             DateTime dateTime = DateTime.Parse(elem.Attribute("DateTime").Value);
             string header = elem.Element("header").Value;
             string text = elem.Element("text").Value;
-            bool isDone = elem.Element("IsDone") !=null ? true : false;
-            return TaskData.Create(header, text, dateTime, isDone);
+            return TaskData.Create(header, text, dateTime);
+>>>>>>> parent of 406f4d9... phone init, xmlreader prepare for poly
         }
+
+        //public static TaskData GetFromXml(XElement elem)
+        //{
+        //    DateTime dateTime = DateTime.Parse(elem.Attribute("DateTime").Value);
+        //    string header = elem.Element("header").Value;
+        //    string text = elem.Element("text").Value;
+        //    bool isDone = elem.Element("IsDone") !=null ? true : false;
+        //    return TaskData.Create(header, text, dateTime, isDone);
+        //}
         
-        public XElement ToXml()
+        public override XElement ToXml()
         {
             XElement root = new XElement("task");
             root.Add(new XAttribute("DateTime", String.Format("{0:s}",Time)));
             root.Add(new XElement("header", this.Header));
             root.Add(new XElement("text", this.Text));
-            if(IsDone)
-                root.Add(new XElement("IsDone"));
             return root;
         }
 

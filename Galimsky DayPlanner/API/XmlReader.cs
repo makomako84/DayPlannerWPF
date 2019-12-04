@@ -25,23 +25,23 @@ namespace Galimsky_DayPlanner
         #endregion
 
         XElement _root;
-        DaysRepo _repo;
+        BaseRepo<BaseData> _repo;
 
-        public XmlReader()
+        public XmlReader(BaseRepo<BaseData> repo)
         {
-            _repo = DaysRepo.Instance;
+            _repo = repo;
         }
 
-        public void XmlLoad(string datafileName)
+        public void SetFile(XElement file, string rootName)
         {
-            _root = XElement.Load($"{datafileName}");
-            _repo.Tasks = new ObservableCollection<TaskData>(GetData());
+            _root = file.Element(rootName);
+            _repo.Items = new ObservableCollection<BaseData>(GetData());
 
         }
         private XElement OutData()
         {
             XElement root = new XElement("data");
-            foreach (TaskData elem in _repo.Tasks)
+            foreach (TaskData elem in _repo.Items)
             {
                 root.Add(elem.ToXml());
             }
@@ -62,7 +62,8 @@ namespace Galimsky_DayPlanner
             List<TaskData> res = new List<TaskData>();
             foreach (XElement item in _root.Elements())
             {
-                res.Add(TaskData.GetFromXml(item));
+                BaseData baseData = BaseData.C
+                res.Add(BaseData.GetFromXml(item));
             }
             return res;
         }

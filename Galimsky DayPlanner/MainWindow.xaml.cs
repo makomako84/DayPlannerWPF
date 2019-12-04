@@ -34,9 +34,19 @@ namespace Galimsky_DayPlanner
         public MainWindow()
         {
             _repo = DaysRepo.Instance;
+      
+
+
             InitializeComponent();
             DataContext = _repo;
+
+            _repo.SelectedDate = DateTime.Now;
+            _repo.ItemsViewInit();
         }
+
+
+
+
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             _repo.SelectedDate = mainCalendar.SelectedDate.GetValueOrDefault();
@@ -54,8 +64,7 @@ namespace Galimsky_DayPlanner
         {
             if (_repo.DayTaskListSelection != null)
             {
-                TaskEditWindow taskEditorWindow = TaskEditWindow.Inst;
-                taskEditorWindow.ConfigureWindow(TaskEditorMode.Edit);
+                TaskEditWindow taskEditorWindow = new TaskEditWindow(TaskEditorMode.Edit);
                 taskEditorWindow.Show();
             }
         }
@@ -67,15 +76,8 @@ namespace Galimsky_DayPlanner
 
         private void Tasks_AddItem_Click(object sender, RoutedEventArgs e)
         {
-            TaskEditWindow taskEditorWindow = TaskEditWindow.Inst;
-            taskEditorWindow.ConfigureWindow(TaskEditorMode.New);
+            TaskEditWindow taskEditorWindow = new TaskEditWindow(TaskEditorMode.New);
             taskEditorWindow.Show();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            PhonesWindow phonesWindow = PhonesWindow.Inst;
-            phonesWindow.Show();
         }
     }
 

@@ -59,6 +59,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="API\BaseData.cs" />
+    <Compile Include="API\BaseRepo.cs" />
     <Compile Include="API\PhoneData.cs" />
     <Compile Include="API\PhonesRepo.cs" />
     <Compile Include="API\EditableDate.cs" />
