@@ -175,14 +175,20 @@ namespace Galimsky_DayPlanner
 
         #endregion
 
+        private TaskData _dayTaskListSelection;
         private void DayTasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count <= 0)
-                return;
-            MessageBox.Show("sdgfsdgs");
+                _dayTaskListSelection = null;
+            _dayTaskListSelection = e.AddedItems[0] as TaskData;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Tasks_EditItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveData_Click(object sender, RoutedEventArgs e)
         {
             XMLSave();
         }
