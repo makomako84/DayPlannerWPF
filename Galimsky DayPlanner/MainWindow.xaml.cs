@@ -55,9 +55,10 @@ namespace Galimsky_DayPlanner
 
         private void DayTasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count <= 0)
-                _repo.DayTaskListSelection = null;
-            else
+            //if (e.AddedItems.Count <= 0)
+            //    _repo.DayTaskListSelection = null;
+            //else
+            if(e.AddedItems.Count>0)
                 _repo.DayTaskListSelection = e.AddedItems[0] as TaskData;
         }
 

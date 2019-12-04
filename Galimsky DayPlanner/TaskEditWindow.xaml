@@ -5,63 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Galimsky_DayPlanner"
         mc:Ignorable="d"
-        Title="TaskEditWindow" Height="200.000" Width="543" Topmost="True" ResizeMode="NoResize" Closed="Window_Closed">
-    <Grid Margin="15" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20" ></RowDefinition>
-            <RowDefinition Height="20" ></RowDefinition>
-            <RowDefinition Height="80" ></RowDefinition>
-            <RowDefinition Height="*" ></RowDefinition>
-        </Grid.RowDefinitions>
+        Title="TaskEditWindow" Height="400.95" Width="543" ResizeMode="NoResize" Closed="Window_Closed">
 
-        
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path= DayTaskListSelection.Header}" FontWeight="Bold"></TextBlock>
-        <!--<TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path= DayTaskListSelection.Time.Day}"></TextBlock>-->
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <TextBox Width="40">
-                <Binding Path="EditedDateProp.Year" Mode="TwoWay">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox>
-            
-            <TextBox Width="20" >
-                <Binding Path="EditedDateProp.Month" Mode="TwoWay">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox>
-            
-            <TextBox Width="20">
-                <Binding Path="EditedDateProp.Day" Mode="TwoWay">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox>
-            
-            <TextBox Width="20">
-                <Binding Path="EditedDateProp.Hour" Mode="TwoWay">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox>
-            
-            <TextBox Width="20" >
-                <Binding Path="EditedDateProp.Minute" Mode="TwoWay">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox>
-        </StackPanel>
-        <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding Path= DayTaskListSelection.Text}">
-            
-        </TextBox>
-        
+    <Canvas>
+        <Grid Margin="15" Width="400" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" ></RowDefinition>
+                <RowDefinition Height="20" ></RowDefinition>
+                <RowDefinition Height="80" ></RowDefinition>
+                <RowDefinition Height="*" ></RowDefinition>
+            </Grid.RowDefinitions>
 
-    </Grid>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path= Selection.Header}" FontWeight="Bold"></TextBlock>
+            <!--<TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path= DayTaskListSelection.Time.Day}"></TextBlock>-->
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBlock Width="80" Text="{Binding Path= Selection.Time, StringFormat=yyyy MMM d, Mode=OneWay}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" >
+                </TextBlock>
+
+                <TextBox Width="20">
+                    <Binding Path="EditedDateProp.Hour" Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+
+                <TextBox Width="20" >
+                    <Binding Path="EditedDateProp.Minute" Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+            </StackPanel>
+            <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding Path= Selection.Text}">
+
+            </TextBox>
+
+            <!--<Calendar HorizontalAlignment="Left" Margin="78,16,0,0" Grid.Row="3" VerticalAlignment="Top"/>-->
+        </Grid>
+        <Calendar Name="DatePicker" Visibility="Hidden"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="15" Canvas.Top="53" SelectedDatesChanged="DatePicker_SelectedDatesChanged" />
+    </Canvas>
 </Window>

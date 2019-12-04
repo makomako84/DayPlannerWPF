@@ -66,16 +66,7 @@ namespace Galimsky_DayPlanner
                 RaisePropertyChanged("DayTaskListSelection");
             }
         }
-        private EditableDate _editedDate;
-        public EditableDate EditedDateProp
-        {
-            get { return _editedDate; }
-            set
-            {
-                _editedDate = value;
-                RaisePropertyChanged("EditedDateProp");
-            }
-        }
+
 
         #endregion
 
