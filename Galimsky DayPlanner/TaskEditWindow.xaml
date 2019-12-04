@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Galimsky_DayPlanner"
         mc:Ignorable="d"
-        Title="TaskEditWindow" Height="400.95" Width="543" ResizeMode="NoResize" Closed="Window_Closed">
+        Title="TaskEditWindow" Height="252.283" Width="451" ResizeMode="NoResize" Closed="Window_Closed">
 
     <Canvas>
         <Grid Margin="15" Width="400" >
@@ -17,7 +17,7 @@
             </Grid.RowDefinitions>
 
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path= Selection.Header}" FontWeight="Bold"></TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="0" Text="{Binding Path= Selection.Header}" FontWeight="Bold"></TextBox>
             <!--<TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path= DayTaskListSelection.Time.Day}"></TextBlock>-->
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Width="80" Text="{Binding Path= Selection.Time, StringFormat=yyyy MMM d, Mode=OneWay}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" >

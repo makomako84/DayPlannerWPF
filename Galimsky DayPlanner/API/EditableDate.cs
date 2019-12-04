@@ -43,5 +43,10 @@ namespace Galimsky_DayPlanner
             Minute = dt.Minute;
         }
 
+        public static DateTime GetFullDateTime(DateTime time, EditableDate ed)
+        {
+            return new DateTime(time.Year, time.Month, time.Day, ed.Hour, ed.Minute, 0);
+        }
+
     }
 }

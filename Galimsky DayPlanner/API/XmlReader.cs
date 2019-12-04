@@ -46,7 +46,7 @@ namespace Galimsky_DayPlanner
                 _root.Save("data.xml");
             }
         }
-        public XElement OutData()
+        private XElement OutData()
         {
             XElement root = new XElement("data");
             foreach (TaskData elem in _repo.Tasks)
@@ -55,7 +55,7 @@ namespace Galimsky_DayPlanner
             }
             return root;
         }
-        public List<TaskData> GetData()
+        private List<TaskData> GetData()
         {
             List<TaskData> res = new List<TaskData>();
             foreach (XElement item in _root.Elements())

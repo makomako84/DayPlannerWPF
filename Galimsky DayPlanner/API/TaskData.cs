@@ -53,12 +53,14 @@ namespace Galimsky_DayPlanner
         {
             Header = header;
             Time = time;
+            Id = id;
         }
         private TaskData(string header, string text, DateTime time, int id)
         {
             Header = header;
             Text = text;
             Time = time;
+            Id = id;
         }
 
         public static TaskData Create(string header, DateTime time)

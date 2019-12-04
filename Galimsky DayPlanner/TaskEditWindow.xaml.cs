@@ -76,11 +76,20 @@ namespace Galimsky_DayPlanner
 
         private void SaveTask()
         {
-            TaskData foundTask = DaysRepo.Instance.Tasks.Where(x => x.Id == _selection.Id).ToList()[0];
-            foundTask.Header = Selection.Header;
-            foundTask.Text = Selection.Text;
-            foundTask.Time = new DateTime(Selection.Time.Year, Selection.Time.Month, Selection.Time.Day, EditedDateProp.Hour, EditedDateProp.Minute, 0);
+            if (_taskEditorMode == TaskEditorMode.Edit)
+            {
+                TaskData foundTask = DaysRepo.Instance.Tasks.Where(x => x.Id == Selection.Id).ToList()[0];
+                foundTask.Header = Selection.Header;
+                foundTask.Text = Selection.Text;
+                foundTask.Time = EditableDate.GetFullDateTime(Selection.Time,EditedDateProp);
+            }
+            else if(_taskEditorMode == TaskEditorMode.New)
+            {
+                DaysRepo.Instance.Tasks.Add(TaskData.Create(Selection.Header, Selection.Text, EditableDate.GetFullDateTime(Selection.Time, EditedDateProp)));
+            }
         }
+
+
 
         private void Window_Closed(object sender, EventArgs e)
         {
