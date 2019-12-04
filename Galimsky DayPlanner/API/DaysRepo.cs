@@ -66,8 +66,8 @@ namespace Galimsky_DayPlanner
                 RaisePropertyChanged("DayTaskListSelection");
             }
         }
-        private EditedDate _editedDate;
-        public EditedDate EditedDateProp
+        private EditableDate _editedDate;
+        public EditableDate EditedDateProp
         {
             get { return _editedDate; }
             set
@@ -147,26 +147,5 @@ namespace Galimsky_DayPlanner
         }
     }
 
-    public class EditedDate
-    {
-        public int Year { get; set; }
-        public int Month { get; set; }
-        public int Day { get; set; }
-        public int Hour { get; set; }
-        public int Minute { get; set; }
-        public EditedDate(DateTime dt)
-        {
-            Year = dt.Year;
-            Month = dt.Month;
-            Day = dt.Day;
-            Hour = dt.Hour;
-            Minute = dt.Minute;
-        }
-
-        public DateTime GetDateTime()
-        {
-            return new DateTime(Year, Month, Day, Hour, Minute,0);
-        }
-
-    }
+    
 }

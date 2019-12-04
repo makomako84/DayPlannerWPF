@@ -54,6 +54,7 @@ namespace Galimsky_DayPlanner
                 }
             }
         }
+
         public TaskData(string header, DateTime time)
         {
             Header = header;
@@ -96,6 +97,8 @@ namespace Galimsky_DayPlanner
         protected void RaisePropertyChanged(string propName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+            if(DaysRepo.Instance.ItemsView!=null)
+                DaysRepo.Instance.ItemsView.Refresh();
         }
         #endregion
     }

@@ -26,7 +26,7 @@ namespace Galimsky_DayPlanner
         {
             InitializeComponent();
             DataContext = DaysRepo.Instance;
-            DaysRepo.Instance.EditedDateProp = new EditedDate(DaysRepo.Instance.DayTaskListSelection.Time);
+            DaysRepo.Instance.EditedDateProp = new EditableDate(DaysRepo.Instance.DayTaskListSelection.Time);
         }
 
         private void SaveTask()
