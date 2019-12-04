@@ -62,17 +62,19 @@ namespace Galimsky_DayPlanner
 
         private void SaveData_Click(object sender, RoutedEventArgs e)
         {
-            XmlReader.Instance.XMLSave();
+            App app = Application.Current as App;
+            app.SaveData();
         }
 
         private void Tasks_AddItem_Click(object sender, RoutedEventArgs e)
         {
             TaskEditWindow taskEditorWindow = TaskEditWindow.Inst;
             taskEditorWindow.ConfigureWindow(TaskEditorMode.New);
-            taskEditorWindow.Show();
+            taskEditorWindow.Show();            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void PhonesBook_Click(object sender, RoutedEventArgs e)
         {
             PhonesWindow phonesWindow = PhonesWindow.Inst;
             phonesWindow.Show();

@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Xml.Linq;
+using System.Windows.Data;
 
 namespace Galimsky_DayPlanner
 {
@@ -60,6 +63,43 @@ namespace Galimsky_DayPlanner
         public PhonesRepo()
         {
 
+        }
+        #endregion
+
+        XElement _root;
+
+        public void InitFromXml()
+        {
+            App app = Application.Current as App;
+            _root = app.Data.Element("phones");
+            Phones = new ObservableCollection<PhoneData>();
+            foreach (XElement item in _root.Elements())
+            {
+                Phones.Add(PhoneData.GetFromXml(item));
+            }
+        }
+        public XElement GetXMLData()
+        {
+            _root = new XElement("phones");
+            foreach (PhoneData elem in Phones)
+            {
+                _root.Add(elem.ToXml());
+            }
+            return _root;
+        }
+
+        #region ItemsView imp.
+        public ICollectionView ItemsView
+        {
+            get
+            {
+                return CollectionViewSource.GetDefaultView(Phones);
+            }
+        }
+
+        public void ItemsViewInit()
+        {
+            ItemsView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
         }
         #endregion
 

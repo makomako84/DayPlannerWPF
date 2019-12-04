@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml.Linq;
 
 namespace Galimsky_DayPlanner
 {
@@ -13,15 +15,31 @@ namespace Galimsky_DayPlanner
     /// </summary>
     public partial class App : Application
     {
+        public XElement Data { private set; get; }
         public App()
         {
-            XmlReader.Instance.XmlLoad("data.xml");
+            Data = XElement.Load("data.xml");
+            DaysRepo.Instance.InitFromXml();
             DaysRepo.Instance.ItemsViewInit();
             DaysRepo.Instance.SelectedDate = DateTime.Now;
+
+            PhonesRepo.Instance.InitFromXml();
+            PhonesRepo.Instance.ItemsViewInit();
         }
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            XmlReader.Instance.XMLSave();
+            SaveData();
+        }
+
+        public void SaveData()
+        {
+            XElement root = new XElement("data");
+            root.Add(new XElement(DaysRepo.Instance.GetXMLData()));
+            root.Add(new XElement(PhonesRepo.Instance.GetXMLData()));
+            using (StringWriter sw = new StringWriter())
+            {
+                root.Save("data.xml");
+            }
         }
     }
 }

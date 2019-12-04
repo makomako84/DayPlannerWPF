@@ -5,18 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Galimsky_DayPlanner"
         mc:Ignorable="d"
-        Title="PhonesWindow" Height="450" Width="800">
+        Title="PhonesWindow" Height="474.457" Width="422.147" ResizeMode="NoResize">
     <Grid>
-        <ListBox x:Name="PhonesList" ItemsSource="{Binding Phones}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="PhonesList" ItemsSource="{Binding Phones}" Grid.Row="0" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Text="{Binding Name}" FontWeight="Bold"></TextBlock>
-                        <TextBlock Text="{Binding Phone}"></TextBlock>
+                        <TextBlock Text="{Binding Number}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Edit" Width="40" Height="30" Margin="15,0"></Button>
+            <Button Content="Add" Width="40" Height="30" Margin="15,0"></Button>
+        </StackPanel>
     </Grid>
 
 </Window>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Xml.Linq;
 
 namespace Galimsky_DayPlanner
 {
@@ -37,7 +38,7 @@ namespace Galimsky_DayPlanner
         private PhoneData()
         {
         }
-        public PhoneData Create(string number, string name)
+        public static PhoneData Create(string number, string name)
         {
             return new PhoneData() { ID = GetNewId(), Number = number, Name = name };
         }
@@ -56,5 +57,20 @@ namespace Galimsky_DayPlanner
         }
 
         #endregion
+
+        public static PhoneData GetFromXml(XElement elem)
+        {
+            string phone = elem.Element("number").Value;
+            string name = elem.Element("name").Value;
+            return PhoneData.Create(phone, name);
+        }
+
+        public XElement ToXml()
+        {
+            XElement root = new XElement("phone");
+            root.Add(new XElement("number", Number));
+            root.Add(new XElement("name", Name));
+            return root;
+        }
     }
 }

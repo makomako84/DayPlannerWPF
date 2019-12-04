@@ -31,6 +31,7 @@
         <Button Name="SaveData" Content="Save Data" Grid.Column="1" HorizontalAlignment="Left" Margin="87,220,0,0" VerticalAlignment="Top" Width="75" Click="SaveData_Click"/>
         <Button Name="Tasks_EditItem" Content="Edit item" Grid.Column="1" HorizontalAlignment="Left" Margin="87,344,0,0" VerticalAlignment="Top" Width="75" Click="Tasks_EditItem_Click"/>
         <Button Name="Tasks_AddItem" Content="Add Item" Grid.Column="1" HorizontalAlignment="Left" Margin="87,295,0,0" VerticalAlignment="Top" Width="75" Click="Tasks_AddItem_Click"/>
+        <Button Name="PhonesBook" Content="Phones Book" Grid.Column="1" HorizontalAlignment="Left" Margin="87,400,0,0" VerticalAlignment="Top" Width="75" Click="PhonesBook_Click"/>
 
 
     </Grid>

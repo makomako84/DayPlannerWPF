@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
+using System.Xml.Linq;
 
 namespace Galimsky_DayPlanner
 {
@@ -135,6 +138,28 @@ namespace Galimsky_DayPlanner
                 task10
             };
 
+        }
+
+        XElement _root;
+
+        public void InitFromXml()
+        {
+            App app = Application.Current as App;
+            _root = app.Data.Element("tasks");
+            Tasks = new ObservableCollection<TaskData>();
+            foreach (XElement item in _root.Elements())
+            {
+                Tasks.Add(TaskData.GetFromXml(item));
+            }
+        }
+        public XElement GetXMLData()
+        {
+            _root = new XElement("tasks");
+            foreach (TaskData elem in Tasks)
+            {
+                _root.Add(elem.ToXml());
+            }
+            return _root;
         }
     }
 
