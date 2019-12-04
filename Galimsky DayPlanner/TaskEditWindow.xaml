@@ -1,0 +1,31 @@
+﻿<Window x:Class="Galimsky_DayPlanner.TaskEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Galimsky_DayPlanner"
+        mc:Ignorable="d"
+        Title="TaskEditWindow" Height="200.000" Width="543" Topmost="True" ResizeMode="NoResize" Closed="Window_Closed">
+    <Grid Margin="15" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" ></RowDefinition>
+            <RowDefinition Height="20" ></RowDefinition>
+            <RowDefinition Height="80" ></RowDefinition>
+            <RowDefinition Height="*" ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path= DayTaskListSelection.Header}" FontWeight="Bold"></TextBlock>
+        <!--<TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path= DayTaskListSelection.Time.Day}"></TextBlock>-->
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBox Width="40" Text="{Binding Path= EditedDateProp.Year, Mode=TwoWay}"></TextBox>
+            <TextBox Width="20" Text="{Binding Path= EditedDateProp.Month, Mode=TwoWay}"></TextBox>
+            <TextBox Width="20" Text="{Binding Path= EditedDateProp.Day, Mode=TwoWay}"></TextBox>
+            <TextBox Width="20" Text="{Binding Path= EditedDateProp.Hour, Mode=TwoWay}"></TextBox>
+            <TextBox Width="20" Text="{Binding Path= EditedDateProp.Minute, Mode=TwoWay}"></TextBox>
+        </StackPanel>
+        <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding Path= DayTaskListSelection.Text}"></TextBox>
+        
+
+    </Grid>
+</Window>

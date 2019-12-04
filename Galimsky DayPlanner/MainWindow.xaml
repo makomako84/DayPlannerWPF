@@ -9,12 +9,6 @@
         Title="MainWindow" Height="768" Width="1024        ">
     <!--<Window.Resources>
         <ObjectDataProvider x:Key="dayTaskList" ObjectType="{x:Type local:DaysRepo}" MethodName="GetTasks"/>
-        <CollectionViewSource x:Key="dayTaskListCVS" Source="{StaticResource dayTaskList}">
-            <CollectionViewSource.SortDescriptions>
-                <scm:SortDescription PropertyName="Time"/>
-            </CollectionViewSource.SortDescriptions>
-        </CollectionViewSource>
-        
     </Window.Resources>-->
     <Grid>
         <Grid.ColumnDefinitions>
@@ -34,8 +28,8 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Name="SaveData" Content="Save Data" Grid.Column="1" HorizontalAlignment="Left" Margin="87,220,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button Name="Tasks_EditItem" Content="Edit item" Grid.Column="1" HorizontalAlignment="Left" Margin="87,344,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="SaveData" Content="Save Data" Grid.Column="1" HorizontalAlignment="Left" Margin="87,220,0,0" VerticalAlignment="Top" Width="75" Click="SaveData_Click"/>
+        <Button Name="Tasks_EditItem" Content="Edit item" Grid.Column="1" HorizontalAlignment="Left" Margin="87,344,0,0" VerticalAlignment="Top" Width="75" Click="Tasks_EditItem_Click"/>
         <Button Name="Tasks_AddItem" Content="Add Item" Grid.Column="1" HorizontalAlignment="Left" Margin="87,295,0,0" VerticalAlignment="Top" Width="75"/>
 
 

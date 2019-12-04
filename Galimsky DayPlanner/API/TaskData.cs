@@ -10,6 +10,9 @@ namespace Galimsky_DayPlanner
 {
     public class TaskData : INotifyPropertyChanged
     {
+        public int Id { get; private set; }
+        private static int _idCounter = -1;
+
         private string _header;
         private string _text;
         private DateTime _time;
@@ -55,12 +58,20 @@ namespace Galimsky_DayPlanner
         {
             Header = header;
             Time = time;
+            SetId();
         }
         public TaskData(string header, string text, DateTime time)
         {
             Header = header;
             Text = text;
             Time = time;
+            SetId();
+        }
+
+        private void SetId()
+        {
+            _idCounter++;
+            Id = _idCounter;
         }
 
         public static TaskData GetFromXml(XElement elem)
@@ -70,6 +81,7 @@ namespace Galimsky_DayPlanner
             string text = elem.Element("text").Value;
             return new TaskData(header, text, dateTime);
         }
+        
         public XElement ToXml()
         {
             XElement root = new XElement("task");
