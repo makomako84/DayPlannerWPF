@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace Galimsky_DayPlanner
 {
     
-
+    public enum TaskEditorMode { New, Edit}
     /// <summary>
     /// Interaction logic for TaskEditWindow.xaml
     /// </summary>
@@ -30,6 +30,8 @@ namespace Galimsky_DayPlanner
         }
 
         #endregion
+
+        private TaskEditorMode _taskEditorMode;
 
         private TaskData _selection;
         public TaskData Selection
@@ -53,12 +55,23 @@ namespace Galimsky_DayPlanner
             }
         }
 
-        public TaskEditWindow()
+        public TaskEditWindow(TaskEditorMode taskEditorMode)
         {
+            _taskEditorMode = taskEditorMode;
+
             InitializeComponent();
             DataContext = this;
-            Selection = DaysRepo.Instance.DayTaskListSelection;
-            EditedDateProp = new EditableDate(_selection.Time);
+
+            if (_taskEditorMode == TaskEditorMode.Edit)
+            {
+                Selection = DaysRepo.Instance.DayTaskListSelection;
+                EditedDateProp = new EditableDate(Selection.Time);
+            }
+            else if(_taskEditorMode == TaskEditorMode.New)
+            {
+                Selection = TaskData.CreateTempTask(DaysRepo.Instance.SelectedDate);
+                EditedDateProp = new EditableDate(Selection.Time);
+            }
         }
 
         private void SaveTask()

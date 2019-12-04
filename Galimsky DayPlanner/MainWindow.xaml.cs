@@ -35,8 +35,8 @@ namespace Galimsky_DayPlanner
         {
             _repo = DaysRepo.Instance;
             _reader = XmlReader.Instance;
-
             _reader.XmlLoad();
+
 
             InitializeComponent();
             DataContext = _repo;
@@ -57,8 +57,7 @@ namespace Galimsky_DayPlanner
         {
             //if (e.AddedItems.Count <= 0)
             //    _repo.DayTaskListSelection = null;
-            //else
-            if(e.AddedItems.Count>0)
+            if (e.AddedItems.Count>0)
                 _repo.DayTaskListSelection = e.AddedItems[0] as TaskData;
         }
 
@@ -66,7 +65,7 @@ namespace Galimsky_DayPlanner
         {
             if (_repo.DayTaskListSelection != null)
             {
-                TaskEditWindow taskEditorWindow = new TaskEditWindow();
+                TaskEditWindow taskEditorWindow = new TaskEditWindow(TaskEditorMode.Edit);
                 taskEditorWindow.Show();
             }
         }
@@ -74,6 +73,12 @@ namespace Galimsky_DayPlanner
         private void SaveData_Click(object sender, RoutedEventArgs e)
         {
             _reader.XMLSave();
+        }
+
+        private void Tasks_AddItem_Click(object sender, RoutedEventArgs e)
+        {
+            TaskEditWindow taskEditorWindow = new TaskEditWindow(TaskEditorMode.New);
+            taskEditorWindow.Show();
         }
     }
 

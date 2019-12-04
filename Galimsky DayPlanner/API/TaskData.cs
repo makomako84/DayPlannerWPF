@@ -22,11 +22,8 @@ namespace Galimsky_DayPlanner
             get { return _header; }
             set
             {
-                if (_header != value)
-                {
-                    _header = value;
-                    RaisePropertyChanged("Header");
-                }
+                _header = value;
+                RaisePropertyChanged("Header");
             }
         }
         public DateTime Time
@@ -34,11 +31,8 @@ namespace Galimsky_DayPlanner
             get { return _time; }
             set
             {
-                if (_time != value)
-                {
-                    _time = value;
-                    RaisePropertyChanged("Time");
-                }
+                _time = value;
+                RaisePropertyChanged("Time");
             }
         }
 
@@ -47,32 +41,42 @@ namespace Galimsky_DayPlanner
             get { return _text; }
             set
             {
-                if (_text != value)
-                {
-                    _text = value;
-                    RaisePropertyChanged("Text");
-                }
+                _text = value;
+                RaisePropertyChanged("Text");
             }
         }
-
-        public TaskData(string header, DateTime time)
+        private TaskData(DateTime time)
+        {
+            Time = time;
+        }
+        private TaskData(string header, DateTime time, int id)
         {
             Header = header;
             Time = time;
-            SetId();
         }
-        public TaskData(string header, string text, DateTime time)
+        private TaskData(string header, string text, DateTime time, int id)
         {
             Header = header;
             Text = text;
             Time = time;
-            SetId();
         }
 
-        private void SetId()
+        public static TaskData Create(string header, DateTime time)
         {
-            _idCounter++;
-            Id = _idCounter;
+            return new TaskData(header, time, GetNewId());
+        }
+        public static TaskData Create(string header, string text, DateTime time)
+        {
+            return new TaskData(header, text, time, GetNewId());
+        }
+        public static TaskData CreateTempTask(DateTime time)
+        {
+            return new TaskData(time);
+        }
+
+        private static int GetNewId()
+        {
+            return _idCounter++;
         }
 
         public static TaskData GetFromXml(XElement elem)
@@ -80,7 +84,7 @@ namespace Galimsky_DayPlanner
             DateTime dateTime = DateTime.Parse(elem.Attribute("DateTime").Value);
             string header = elem.Element("header").Value;
             string text = elem.Element("text").Value;
-            return new TaskData(header, text, dateTime);
+            return TaskData.Create(header, text, dateTime);
         }
         
         public XElement ToXml()
@@ -97,8 +101,8 @@ namespace Galimsky_DayPlanner
         protected void RaisePropertyChanged(string propName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-            if(DaysRepo.Instance.ItemsView!=null)
-                DaysRepo.Instance.ItemsView.Refresh();
+            //if(DaysRepo.Instance.ItemsView!=null)
+            //    DaysRepo.Instance.ItemsView.Refresh();
         }
         #endregion
     }
