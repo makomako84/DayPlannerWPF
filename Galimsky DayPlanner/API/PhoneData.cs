@@ -42,6 +42,10 @@ namespace Galimsky_DayPlanner
         {
             return new PhoneData() { ID = GetNewId(), Number = number, Name = name };
         }
+        public static PhoneData Create()
+        {
+            return new PhoneData();
+        }
 
         private static int GetNewId()
         {

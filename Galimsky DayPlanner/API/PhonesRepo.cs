@@ -44,6 +44,7 @@ namespace Galimsky_DayPlanner
             {
                 _phones = value;
                 RaisePropertyChanged("Phones");
+                ItemsView.Refresh();
             }
         }
 

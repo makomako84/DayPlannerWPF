@@ -11,19 +11,20 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
-        <ListBox x:Name="PhonesList" ItemsSource="{Binding Phones}" Grid.Row="0" >
+        <ListBox x:Name="PhonesList" ItemsSource="{Binding ItemsView}" Grid.Row="0" SelectionChanged="PhonesList_SelectionChanged" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding Name}" FontWeight="Bold"></TextBlock>
-                        <TextBlock Text="{Binding Number}"></TextBlock>
+                        <TextBox Text="{Binding Name}" FontWeight="Bold"></TextBox>
+                        <TextBox Text="{Binding Number}"></TextBox>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Edit" Width="40" Height="30" Margin="15,0"></Button>
-            <Button Content="Add" Width="40" Height="30" Margin="15,0"></Button>
+            <Button Name="ButtonEdit" Content="Edit" Width="40" Height="30" Margin="15,0"></Button>
+            <Button Name="ButtonAdd" Content="Add" Width="40" Height="30" Margin="15,0" Click="ButtonAdd_Click"></Button>
+            <Button Name="ButtonRefresh" Content="Refresh" Width="40" Height="30" Margin="15,0" Click="ButtonRefresh_Click" ></Button>
         </StackPanel>
     </Grid>
 

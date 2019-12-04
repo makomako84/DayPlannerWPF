@@ -37,5 +37,21 @@ namespace Galimsky_DayPlanner
             InitializeComponent();
             DataContext = PhonesRepo.Instance;
         }
+
+        private void PhonesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(e.AddedItems.Count>0)
+                PhonesRepo.Instance.SelectedPhone = e.AddedItems[0] as PhoneData;   
+        }
+
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            PhonesRepo.Instance.Phones.Add(PhoneData.Create());
+        }
+
+        private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            PhonesRepo.Instance.ItemsView.Refresh();
+        }
     }
 }
