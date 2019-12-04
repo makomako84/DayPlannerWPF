@@ -13,12 +13,12 @@
                 <RowDefinition Height="20" ></RowDefinition>
                 <RowDefinition Height="20" ></RowDefinition>
                 <RowDefinition Height="80" ></RowDefinition>
+                <RowDefinition Height="40" ></RowDefinition>
                 <RowDefinition Height="*" ></RowDefinition>
             </Grid.RowDefinitions>
 
 
-            <TextBox Grid.Row="0" Grid.Column="0" Text="{Binding Path= Selection.Header}" FontWeight="Bold"></TextBox>
-            <!--<TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path= DayTaskListSelection.Time.Day}"></TextBlock>-->
+            <TextBox Grid.Row="0" Grid.Column="0" Text="{Binding Path= Selection.Header}" FontWeight="Bold"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Width="80" Text="{Binding Path= Selection.Time, StringFormat=yyyy MMM d, Mode=OneWay}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" >
                 </TextBlock>
@@ -39,9 +39,11 @@
                     </Binding>
                 </TextBox>
             </StackPanel>
-            <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding Path= Selection.Text}">
-
-            </TextBox>
+            <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding Path= Selection.Text}"/>
+            <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
+                <Button Name="ButtonCancel" Content="Cancel" Margin="15,0" Click="ButtonCancel_Click"/>
+                <Button Name="ButtonSave" Content="Save" Margin="15,0" Click="ButtonSave_Click"/>
+            </StackPanel>
 
             <!--<Calendar HorizontalAlignment="Left" Margin="78,16,0,0" Grid.Row="3" VerticalAlignment="Top"/>-->
         </Grid>

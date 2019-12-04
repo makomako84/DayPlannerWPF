@@ -28,14 +28,13 @@ namespace Galimsky_DayPlanner
 
         #region components def
         private DaysRepo _repo;
-        private XmlReader _reader;
+        
         #endregion
 
         public MainWindow()
         {
             _repo = DaysRepo.Instance;
-            _reader = XmlReader.Instance;
-            _reader.XmlLoad();
+      
 
 
             InitializeComponent();
@@ -72,7 +71,7 @@ namespace Galimsky_DayPlanner
 
         private void SaveData_Click(object sender, RoutedEventArgs e)
         {
-            _reader.XMLSave();
+            XmlReader.Instance.XMLSave();
         }
 
         private void Tasks_AddItem_Click(object sender, RoutedEventArgs e)

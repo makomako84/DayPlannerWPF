@@ -13,5 +13,13 @@ namespace Galimsky_DayPlanner
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            XmlReader.Instance.XmlLoad();
+        }
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            XmlReader.Instance.XMLSave();
+        }
     }
 }

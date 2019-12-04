@@ -22,6 +22,7 @@ namespace Galimsky_DayPlanner
     /// </summary>
     public partial class TaskEditWindow : Window, INotifyPropertyChanged
     {
+
         #region INotifyPropertyChanged imp.
         public event PropertyChangedEventHandler PropertyChanged;
         public void RaisePropertyChanged(string propName)
@@ -93,7 +94,6 @@ namespace Galimsky_DayPlanner
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            SaveTask();
             DaysRepo.Instance.ItemsView.Refresh();
         }
 
@@ -108,6 +108,17 @@ namespace Galimsky_DayPlanner
         private void DatePicker_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             Selection.Time = DatePicker.SelectedDate.GetValueOrDefault();
+        }
+
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            SaveTask();
+            this.Close();
         }
     }
 }
