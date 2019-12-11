@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace Galimsky_DayPlanner
 {
@@ -19,8 +20,14 @@ namespace Galimsky_DayPlanner
             get { return _number; }
             set
             {
-                _number = value;
-                RaisePropertyChanged("Number");
+                if (Tools.ValidatePhoneNumber(value,true))
+                {
+                    _number = value;
+                    RaisePropertyChanged("Number");
+                }else
+                {
+                    throw new System.Exception($"{value} is not a phone number");
+                }
             }
         }
 
@@ -62,6 +69,7 @@ namespace Galimsky_DayPlanner
 
         #endregion
 
+        #region XElement methods
         public static PhoneData GetFromXml(XElement elem)
         {
             string phone = elem.Element("number").Value;
@@ -76,5 +84,6 @@ namespace Galimsky_DayPlanner
             root.Add(new XElement("name", Name));
             return root;
         }
+        #endregion
     }
 }

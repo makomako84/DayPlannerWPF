@@ -16,7 +16,7 @@
                 <DataTemplate>
                     <StackPanel>
                         <TextBox Text="{Binding Name}" FontWeight="Bold"></TextBox>
-                        <TextBox Text="{Binding Number}"></TextBox>
+                        <TextBox Text="{Binding Number, StringFormat={}{0:(###)###-####}}"></TextBox>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
