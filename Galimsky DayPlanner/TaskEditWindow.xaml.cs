@@ -22,16 +22,6 @@ namespace Galimsky_DayPlanner
     /// </summary>
     public partial class TaskEditWindow : Window, INotifyPropertyChanged
     {
-        private static TaskEditWindow _inst;
-        public static TaskEditWindow Inst
-        {
-            get
-            {
-                if (_inst == null)
-                    _inst = new TaskEditWindow();
-                return _inst;
-            }
-        }
 
         #region INotifyPropertyChanged imp.
         public event PropertyChangedEventHandler PropertyChanged;
@@ -67,7 +57,7 @@ namespace Galimsky_DayPlanner
         }
 
 
-        private TaskEditWindow()
+        public TaskEditWindow()
         {
             InitializeComponent();
         }

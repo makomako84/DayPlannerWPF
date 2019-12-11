@@ -54,7 +54,7 @@ namespace Galimsky_DayPlanner
         {
             if (_repo.DayTaskListSelection != null)
             {
-                TaskEditWindow taskEditorWindow = TaskEditWindow.Inst;
+                TaskEditWindow taskEditorWindow = new TaskEditWindow();
                 taskEditorWindow.ConfigureWindow(TaskEditorMode.Edit);
                 taskEditorWindow.Show();
             }
@@ -68,15 +68,15 @@ namespace Galimsky_DayPlanner
 
         private void Tasks_AddItem_Click(object sender, RoutedEventArgs e)
         {
-            TaskEditWindow taskEditorWindow = TaskEditWindow.Inst;
+            TaskEditWindow taskEditorWindow = new TaskEditWindow();
             taskEditorWindow.ConfigureWindow(TaskEditorMode.New);
-            taskEditorWindow.Show();            
+            taskEditorWindow.Show();
         }
 
 
         private void PhonesBook_Click(object sender, RoutedEventArgs e)
         {
-            PhonesWindow phonesWindow = PhonesWindow.Inst;
+            PhonesWindow phonesWindow = new PhonesWindow();
             phonesWindow.Show();
         }
     }

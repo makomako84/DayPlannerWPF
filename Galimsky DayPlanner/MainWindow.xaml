@@ -24,6 +24,7 @@
                     <StackPanel>
                         <TextBlock Text="{Binding Time, StringFormat='{}{0:HH:mm}'}" FontWeight="Bold"/>
                         <TextBlock Text="{Binding Header}"/>
+                        <CheckBox IsChecked="{Binding IsDone}"></CheckBox>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

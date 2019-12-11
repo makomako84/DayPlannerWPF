@@ -19,20 +19,9 @@ namespace Galimsky_DayPlanner
     /// </summary>
     public partial class PhonesWindow : Window
     {
-        #region singleton def
-        private static PhonesWindow _inst;
-        public static PhonesWindow Inst
-        {
-            get
-            {
-                if (_inst == null)
-                    _inst = new PhonesWindow();
-                return _inst;
-            }
-        }
-        #endregion
+        //#endregion
 
-        private PhonesWindow()
+        public PhonesWindow()
         {
             InitializeComponent();
             DataContext = PhonesRepo.Instance;
