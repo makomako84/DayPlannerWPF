@@ -11,6 +11,13 @@
         <ObjectDataProvider x:Key="dayTaskList" ObjectType="{x:Type local:DaysRepo}" MethodName="GetTasks"/>
     </Window.Resources>-->
     <Grid>
-        <local:TasksControl/>
+        <TabControl>
+            <TabItem Header="Tasks">
+                <local:TasksControl/>
+            </TabItem>
+            <TabItem Header="Phones">
+                <local:PhonesControl/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
