@@ -38,22 +38,17 @@ namespace Galimsky_DayPlanner
             if (_repo.DayTaskListSelection != null)
             {
                 TaskEditWindow taskEditorWindow = new TaskEditWindow();
+                taskEditorWindow.Owner = Application.Current.MainWindow;
                 taskEditorWindow.Configure(TaskEditorMode.Edit);
-                taskEditorWindow.Show();
+                taskEditorWindow.ShowDialog();
             }
         }
-
-        private void SaveData_Click(object sender, RoutedEventArgs e)
-        {
-            App app = Application.Current as App;
-            app.SaveData();
-        }
-
         private void Tasks_AddItem_Click(object sender, RoutedEventArgs e)
         {
             TaskEditWindow taskEditorWindow = new TaskEditWindow();
+            taskEditorWindow.Owner = Application.Current.MainWindow;
             taskEditorWindow.Configure(TaskEditorMode.New);
-            taskEditorWindow.Show();
+            taskEditorWindow.ShowDialog();
         }
     }
 }

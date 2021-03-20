@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Galimsky_DayPlanner"
         mc:Ignorable="d"
-        Title="TaskEditWindow" Height="252.283" Width="451" ResizeMode="NoResize">
+        Title="TaskEditWindow" Height="252.283" Width="451" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
 
     <Grid>
         <local:TaskEditControl x:Name="taskEditControl"/>
