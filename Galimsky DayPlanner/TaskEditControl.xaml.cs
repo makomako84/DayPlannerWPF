@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Galimsky_DayPlanner
 {
@@ -116,15 +107,18 @@ namespace Galimsky_DayPlanner
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-            //this.Close();
-            //TODO: change with something like Hide() method
+            CloseParentWindow();
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             SaveTask();
-            //this.Close();
-            //TODO: similar with above method
+            CloseParentWindow();
+        }
+
+        private void CloseParentWindow()
+        {
+            Window.GetWindow(this).Close();            
         }
     }
 }
