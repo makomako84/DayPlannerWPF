@@ -18,7 +18,7 @@
         <Calendar x:Name="mainCalendar" Grid.Column="1" Margin="0,15,0,5" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
 
         <!--Current Day Items-->
-        <ListBox x:Name="DayTasksList" ItemsSource="{Binding ItemsView}" Grid.Column="0" Margin="15,15,15,11.8" SelectionChanged="DayTasksList_SelectionChanged">
+        <ListBox x:Name="DayTasksList" ItemsSource="{Binding ItemsView}" Grid.Column="0" Margin="15,15,15,11.8" SelectionChanged="DayTasksList_SelectionChanged" MouseDoubleClick="DayTasksList_MouseDoubleClick">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
