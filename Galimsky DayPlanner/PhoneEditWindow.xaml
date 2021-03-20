@@ -1,0 +1,21 @@
+﻿<Window x:Class="Galimsky_DayPlanner.PhoneEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Galimsky_DayPlanner"
+        mc:Ignorable="d"
+        Title="PhoneEditWindow" Height="Auto" Width="Auto" SizeToContent="WidthAndHeight">
+    <Grid>
+        <StackPanel Margin="6,9">
+            <TextBlock>Name</TextBlock>
+            <TextBox Margin="0,0,0,4"></TextBox>
+            <TextBlock>Phone number</TextBlock>
+            <TextBox Margin="0,0,0,7"></TextBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="2,0,0,0">
+                <Button Content="Cancel" Width="50" Margin="0,0,6,0"></Button>
+                <Button Content="Save" Width="50" Margin="6,0,0,0"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
