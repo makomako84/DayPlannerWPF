@@ -11,5 +11,21 @@ namespace Galimsky_DayPlanner
         {
             InitializeComponent();
         }
+
+        private void SaveData()
+        {
+            (Application.Current as App).SaveData();
+        }
+
+        private void menuItem_save_Click(object sender, RoutedEventArgs e)
+        {
+            SaveData();
+        }
+
+        private void menuItem_exit_Click(object sender, RoutedEventArgs e)
+        {
+            SaveData();
+            Application.Current.Shutdown();
+        }
     }
 }

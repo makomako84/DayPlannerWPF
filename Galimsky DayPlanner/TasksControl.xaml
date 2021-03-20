@@ -30,7 +30,6 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top" Margin="15,0.2,3,0" Height="19">
-            <Button Name="SaveData" Content="Save Data" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="SaveData_Click" Height="19"/>
             <Button Name="Tasks_EditItem" Content="Edit item" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Click="Tasks_EditItem_Click" Height="19"/>
             <Button Name="Tasks_AddItem" Content="Add Item" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Click="Tasks_AddItem_Click" Height="19"/>
         </StackPanel>

@@ -10,8 +10,20 @@
     <!--<Window.Resources>
         <ObjectDataProvider x:Key="dayTaskList" ObjectType="{x:Type local:DaysRepo}" MethodName="GetTasks"/>
     </Window.Resources>-->
+
     <Grid>
-        <TabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem x:Name="menuItem_save" Header="Save" Click="menuItem_save_Click"/>
+                <Separator/>
+                <MenuItem x:Name="menuItem_exit" Header="Exit" Click="menuItem_exit_Click"/>
+            </MenuItem>
+        </Menu>
+        <TabControl Grid.Row="1">
             <TabItem Header="Tasks">
                 <local:TasksControl/>
             </TabItem>
