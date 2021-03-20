@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+  <tasks>
+    <task DateTime="2021-03-20T14:48:00">
+      <header>somedata</header>
+      <text>data is here</text>
+    </task>
+    <task DateTime="2021-03-20T14:48:00">
+      <header>and another one tasks</header>
+      <text>this is another task</text>
+      <IsDone />
+    </task>
+  </tasks>
+  <phones />
+</data>
