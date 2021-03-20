@@ -27,5 +27,10 @@ namespace Galimsky_DayPlanner
             SaveData();
             Application.Current.Shutdown();
         }
+
+        private void Window_Closed(object sender, System.EventArgs e)
+        {
+            SaveData();
+        }
     }
 }

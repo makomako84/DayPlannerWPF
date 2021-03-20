@@ -17,5 +17,9 @@ namespace Galimsky_DayPlanner
             taskEditControl.Configure(mode);
         }
 
+        private void taskEditWindow_Closed(object sender, System.EventArgs e)
+        {
+            DaysRepo.Instance.ItemsView.Refresh();
+        }
     }
 }

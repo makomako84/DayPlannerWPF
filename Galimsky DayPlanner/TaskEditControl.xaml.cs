@@ -85,13 +85,6 @@ namespace Galimsky_DayPlanner
             }
         }
 
-
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            DaysRepo.Instance.ItemsView.Refresh();
-        }
-
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (DatePicker.Visibility == Visibility.Hidden)

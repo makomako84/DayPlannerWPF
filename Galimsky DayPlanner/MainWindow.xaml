@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Galimsky_DayPlanner"
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="535.3">
+        Title="MainWindow" Height="535.3" Closed="Window_Closed">
     <!--<Window.Resources>
         <ObjectDataProvider x:Key="dayTaskList" ObjectType="{x:Type local:DaysRepo}" MethodName="GetTasks"/>
     </Window.Resources>-->
