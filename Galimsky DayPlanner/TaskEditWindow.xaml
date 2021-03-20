@@ -5,55 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Galimsky_DayPlanner"
         mc:Ignorable="d"
-        Title="TaskEditWindow" Height="252.283" Width="451" ResizeMode="NoResize" Closed="Window_Closed">
+        Title="TaskEditWindow" Height="252.283" Width="451" ResizeMode="NoResize">
 
-    <Canvas>
-        <Grid Margin="15" Width="400" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20" ></RowDefinition>
-                <RowDefinition Height="20" ></RowDefinition>
-                <RowDefinition Height="80" ></RowDefinition>
-                <RowDefinition Height="40" ></RowDefinition>
-                <RowDefinition Height="*" ></RowDefinition>
-            </Grid.RowDefinitions>
-
-
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="383*"></ColumnDefinition>
-                    <ColumnDefinition Width="17*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBox  Grid.Column="0" Text="{Binding Path= Selection.Header}" FontWeight="Bold"/>
-                <CheckBox Grid.Column="1" IsChecked="{Binding Path=Selection.IsDone}"></CheckBox>
-            </Grid>
-            <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <TextBlock Width="80" Text="{Binding Path= Selection.Time, StringFormat=yyyy MMM d, Mode=OneWay}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" >
-                </TextBlock>
-
-                <TextBox Width="20">
-                    <Binding Path="EditedDateProp.Hour" Mode="TwoWay">
-                        <Binding.ValidationRules>
-                            <DataErrorValidationRule/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox>
-
-                <TextBox Width="20" >
-                    <Binding Path="EditedDateProp.Minute" Mode="TwoWay">
-                        <Binding.ValidationRules>
-                            <DataErrorValidationRule/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox>
-            </StackPanel>
-            <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding Path= Selection.Text}"/>
-            <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
-                <Button Name="ButtonCancel" Content="Cancel" Margin="15,0" Click="ButtonCancel_Click"/>
-                <Button Name="ButtonSave" Content="Save" Margin="15,0" Click="ButtonSave_Click"/>
-            </StackPanel>
-
-            <!--<Calendar HorizontalAlignment="Left" Margin="78,16,0,0" Grid.Row="3" VerticalAlignment="Top"/>-->
-        </Grid>
-        <Calendar Name="DatePicker" Visibility="Hidden"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="15" Canvas.Top="53" SelectedDatesChanged="DatePicker_SelectedDatesChanged" />
-    </Canvas>
+    <Grid>
+        <local:TaskEditControl x:Name="taskEditControl"/>
+    </Grid>
 </Window>
