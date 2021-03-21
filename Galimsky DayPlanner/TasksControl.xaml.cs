@@ -37,20 +37,20 @@ namespace Galimsky_DayPlanner
         {
             if (_repo.DayTaskListSelection != null)
             {
-                OpenTaskEditWindow(TaskEditorMode.Edit);
+                OpenTaskEditWindow(EditorMode.Edit);
             }
         }
         private void Tasks_AddItem_Click(object sender, RoutedEventArgs e)
         {
-            OpenTaskEditWindow(TaskEditorMode.New);
+            OpenTaskEditWindow(EditorMode.New);
         }
 
         private void DayTasksList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            OpenTaskEditWindow(TaskEditorMode.Edit);
+            OpenTaskEditWindow(EditorMode.Edit);
         }
 
-        private void OpenTaskEditWindow(TaskEditorMode mode)
+        private void OpenTaskEditWindow(EditorMode mode)
         {
             TaskEditWindow taskEditorWindow = new TaskEditWindow();
             taskEditorWindow.Owner = Application.Current.MainWindow;

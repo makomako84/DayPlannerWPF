@@ -12,7 +12,7 @@ namespace Galimsky_DayPlanner
             InitializeComponent();
         }
 
-        public void Configure(TaskEditorMode mode)
+        public void Configure(EditorMode mode)
         {
             taskEditControl.Configure(mode);
         }

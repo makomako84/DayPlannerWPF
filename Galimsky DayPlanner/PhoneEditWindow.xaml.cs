@@ -19,9 +19,40 @@ namespace Galimsky_DayPlanner
     /// </summary>
     public partial class PhoneEditWindow : Window
     {
+        EditorMode _editorMode;
+
+        private PhoneData _selection;
+        public PhoneData Selection
+        {
+            get { return _selection; }
+            set
+            {
+                _selection = value;
+
+            }
+        }
+
         public PhoneEditWindow()
         {
             InitializeComponent();
+        }
+
+        public void Configure(EditorMode editorMode)
+        {
+            _editorMode = editorMode;
+            InitializeComponent();
+            DataContext = this;
+
+            if (_editorMode == EditorMode.Edit)
+            {
+                Selection = PhonesRepo.Instance.SelectedPhone;
+                //EditedDateProp = new EditableDate(Selection.Time);
+            }
+            else if (_editorMode == EditorMode.New)
+            {
+                //Selection = TaskData.CreateTempTask(DaysRepo.Instance.SelectedDate);
+                //EditedDateProp = new EditableDate(Selection.Time);
+            }
         }
     }
 }
