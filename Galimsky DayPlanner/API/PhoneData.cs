@@ -8,6 +8,17 @@ namespace Galimsky_DayPlanner
         private static int _idCounter = -1;
         public int ID { private set; get; }
 
+        private string _countryCode;
+        public string CountryCode
+        {
+            get { return _countryCode; }
+            set
+            {
+                _countryCode = value;
+                RaisePropertyChanged("CountryCode");
+            }
+        }
+
         private string _number;
         public string Number
         {
@@ -33,9 +44,9 @@ namespace Galimsky_DayPlanner
         private PhoneData()
         {
         }
-        public static PhoneData Create(string number, string name)
+        public static PhoneData Create(string number, string name, string countryCode)
         {
-            return new PhoneData() { ID = GetNewId(), Number = number, Name = name };
+            return new PhoneData() { ID = GetNewId(), Number = number, Name = name, CountryCode = countryCode };
         }
         public static PhoneData Create()
         {
@@ -62,7 +73,8 @@ namespace Galimsky_DayPlanner
         {
             string phone = elem.Element("number").Value;
             string name = elem.Element("name").Value;
-            return PhoneData.Create(phone, name);
+            string countryCode = elem.Element("code").Value;
+            return PhoneData.Create(phone, name, countryCode);
         }
 
         public XElement ToXml()
@@ -70,6 +82,7 @@ namespace Galimsky_DayPlanner
             XElement root = new XElement("phone");
             root.Add(new XElement("number", Number));
             root.Add(new XElement("name", Name));
+            root.Add(new XElement("code", CountryCode));
             return root;
         }
         #endregion
