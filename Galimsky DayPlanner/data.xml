@@ -27,10 +27,12 @@
   <phones>
     <phone>
       <number>89992282424</number>
+      <code>+7</code>
       <name>Agent Smith</name>
     </phone>
     <phone>
       <number>82242252424</number>
+	  <code>+7</code>
       <name>Korbin Dalas</name>
     </phone>
   </phones>

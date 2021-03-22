@@ -15,7 +15,11 @@
             <TextBlock>Phone number</TextBlock>
             <StackPanel Orientation="Horizontal">
                 <TextBox Margin="0,0,10,7" Width="21">
-                    
+                    <Binding Path="CountryCode">
+                        <Binding.ValidationRules>
+                            <local:CountryCodeValidationRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
                 </TextBox>
                 <TextBox Margin="0,0,0,7" Width="140">
                     <Binding Path="PhoneNumber" UpdateSourceTrigger="PropertyChanged">

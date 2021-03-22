@@ -48,6 +48,7 @@ namespace Galimsky_DayPlanner
             }
             _viewModel.PhoneNumber = Selection.Number;
             _viewModel.Name = Selection.Name;
+            _viewModel.CountryCode = Selection.CountryCode;
         }
 
         private void SaveTask()
@@ -57,10 +58,11 @@ namespace Galimsky_DayPlanner
                 PhoneData foundPhone = PhonesRepo.Instance.Phones.Where(x => x.ID == Selection.ID).ToList()[0];
                 foundPhone.Name = _viewModel.Name;
                 foundPhone.Number = _viewModel.PhoneNumber;
+                foundPhone.CountryCode = _viewModel.CountryCode;
             }
             else if (_editorMode == EditorMode.New)
             {
-                PhonesRepo.Instance.Phones.Add(PhoneData.Create(_viewModel.PhoneNumber, _viewModel.Name));
+                PhonesRepo.Instance.Phones.Add(PhoneData.Create(_viewModel.PhoneNumber, _viewModel.Name, _viewModel.CountryCode));
             }
         }
 
@@ -95,18 +97,27 @@ namespace Galimsky_DayPlanner
             set { SetValue(NameProperty, value); }
         }
 
+        public string CountryCode
+        {
+            get { return (string)GetValue(CountryCodeProperty); }
+            set { SetValue(CountryCodeProperty, value); }
+        }
+
         public static DependencyProperty PhoneNumberProperty =
             DependencyProperty.Register("PhoneNumber", typeof(string), typeof(PhoneEditWindowViewModel));
 
         public static DependencyProperty NameProperty =
             DependencyProperty.Register("Name", typeof(string), typeof(PhoneEditWindowViewModel));
+
+        public static DependencyProperty CountryCodeProperty =
+            DependencyProperty.Register("CountryCode", typeof(string), typeof(PhoneEditWindowViewModel));
     }
 
-    public class PhoneValidationRule : System.Windows.Controls.ValidationRule
+    public class PhoneValidationRule : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            System.Windows.Controls.ValidationResult validationResult;
+            ValidationResult validationResult;
             string val = (string)value;
 
             //if field is null / empty or contains some special characters, fail validation            
@@ -114,6 +125,24 @@ namespace Galimsky_DayPlanner
                 System.Text.RegularExpressions.Regex.IsMatch(val, @"^[2-9]\d{2}-\d{3}-\d{4}$"))
                 validationResult = new ValidationResult(true, null);
             else                
+                validationResult = new ValidationResult(false, "The value contains invalid characters");
+
+            return validationResult;
+        }
+    }
+
+    public class CountryCodeValidationRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            ValidationResult validationResult;
+            string val = (string)value;
+
+            //if field is null / empty or contains some special characters, fail validation            
+            if (!string.IsNullOrEmpty(val) &&
+                System.Text.RegularExpressions.Regex.IsMatch(val, @"^(\+?\d{1,3}|\d{1,4})$"))
+                validationResult = new ValidationResult(true, null);
+            else
                 validationResult = new ValidationResult(false, "The value contains invalid characters");
 
             return validationResult;
