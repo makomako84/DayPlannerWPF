@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+
 namespace Galimsky_DayPlanner
 {
     /// <summary>
@@ -20,6 +23,8 @@ namespace Galimsky_DayPlanner
 
             }
         }
+        
+        private PhoneEditWindowViewModel _viewModel;
 
         public PhoneEditWindow()
         {
@@ -30,7 +35,8 @@ namespace Galimsky_DayPlanner
         {
             _editorMode = editorMode;
             InitializeComponent();
-            DataContext = this;
+            _viewModel = new PhoneEditWindowViewModel();
+            this.DataContext = _viewModel;
 
             if (_editorMode == EditorMode.Edit)
             {
@@ -40,6 +46,8 @@ namespace Galimsky_DayPlanner
             {
                 Selection = PhoneData.Create();
             }
+            _viewModel.PhoneNumber = Selection.Number;
+            _viewModel.Name = Selection.Name;
         }
 
         private void SaveTask()
@@ -47,12 +55,12 @@ namespace Galimsky_DayPlanner
             if (_editorMode == EditorMode.Edit)
             {
                 PhoneData foundPhone = PhonesRepo.Instance.Phones.Where(x => x.ID == Selection.ID).ToList()[0];
-                foundPhone.Name = Selection.Name;
-                foundPhone.Number = Selection.Number;
+                foundPhone.Name = _viewModel.Name;
+                foundPhone.Number = _viewModel.PhoneNumber;
             }
             else if (_editorMode == EditorMode.New)
             {
-                PhonesRepo.Instance.Phones.Add(PhoneData.Create(Selection.Number, Selection.Name));
+                PhonesRepo.Instance.Phones.Add(PhoneData.Create(_viewModel.PhoneNumber, _viewModel.Name));
             }
         }
 
@@ -70,6 +78,45 @@ namespace Galimsky_DayPlanner
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+    }
+
+    public class PhoneEditWindowViewModel: DependencyObject
+    {
+        public string PhoneNumber
+        {
+            get { return (string)GetValue(PhoneNumberProperty); }
+            set { SetValue(PhoneNumberProperty, value); }
+        }
+
+        public string Name
+        {
+            get { return (string)GetValue(NameProperty); }
+            set { SetValue(NameProperty, value); }
+        }
+
+        public static DependencyProperty PhoneNumberProperty =
+            DependencyProperty.Register("PhoneNumber", typeof(string), typeof(PhoneEditWindowViewModel));
+
+        public static DependencyProperty NameProperty =
+            DependencyProperty.Register("Name", typeof(string), typeof(PhoneEditWindowViewModel));
+    }
+
+    public class PhoneValidationRule : System.Windows.Controls.ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            System.Windows.Controls.ValidationResult validationResult;
+            string val = (string)value;
+
+            //if field is null / empty or contains some special characters, fail validation            
+            if (!string.IsNullOrEmpty(val) &&
+                System.Text.RegularExpressions.Regex.IsMatch(val, @"^[2-9]\d{2}-\d{3}-\d{4}$"))
+                validationResult = new ValidationResult(true, null);
+            else                
+                validationResult = new ValidationResult(false, "The value contains invalid characters");
+
+            return validationResult;
         }
     }
 }
