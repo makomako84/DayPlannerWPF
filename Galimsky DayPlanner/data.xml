@@ -26,14 +26,14 @@
   </tasks>
   <phones>
     <phone>
-      <number>89992282424</number>
-      <code>+7</code>
+      <number>999-228-2424</number>
       <name>Agent Smith</name>
+      <code>+7</code>
     </phone>
     <phone>
-      <number>82242252424</number>
-	  <code>+7</code>
+      <number>224-225-2424</number>
       <name>Korbin Dalas</name>
+      <code>+7</code>
     </phone>
   </phones>
 </data>
