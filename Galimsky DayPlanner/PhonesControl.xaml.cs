@@ -42,5 +42,11 @@ namespace Galimsky_DayPlanner
         {
             OpenPhoneEdit(EditorMode.Edit);
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PhonesRepo.Instance.FilterString = FilterBox.Text;
+            PhonesRepo.Instance.ItemsView.Refresh();
+        }
     }
 }

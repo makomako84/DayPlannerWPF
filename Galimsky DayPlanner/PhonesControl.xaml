@@ -8,10 +8,16 @@
              d:DesignHeight="480" d:DesignWidth="422">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition/>
             <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
-        <ListBox x:Name="PhonesList" ItemsSource="{Binding ItemsView}" Grid.Row="0" SelectionChanged="PhonesList_SelectionChanged" MouseDoubleClick="PhonesList_MouseDoubleClick" >
+        <StackPanel Orientation="Horizontal">
+            <Label>Search: </Label>
+            <TextBox x:Name="FilterBox" Grid.Row="0" TextChanged="TextBox_TextChanged" Margin="0,0,0.4,1.8" Width="374"></TextBox>    
+        </StackPanel>
+        
+        <ListBox x:Name="PhonesList" ItemsSource="{Binding ItemsView}" Grid.Row="1" SelectionChanged="PhonesList_SelectionChanged" MouseDoubleClick="PhonesList_MouseDoubleClick" Margin="0,0,0.4,0" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -24,7 +30,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Margin="141,5,140.4,5" Width="141">
             <Button Name="ButtonEdit" Content="Edit" Width="40" Height="30" Margin="15,0" Click="ButtonEdit_Click"></Button>
             <Button Name="ButtonAdd" Content="Add" Width="40" Height="30" Margin="15,0" Click="ButtonAdd_Click"></Button>
         </StackPanel>

@@ -90,7 +90,6 @@
     <Compile Include="TaskEditWindow.xaml.cs">
       <DependentUpon>TaskEditWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="API\Tools.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
