@@ -55,19 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DayStatsWindow.xaml.cs">
+    <Compile Include="View\DayStatsWindow.xaml.cs">
       <DependentUpon>DayStatsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PhoneEditWindow.xaml.cs">
+    <Compile Include="View\PhoneEditWindow.xaml.cs">
       <DependentUpon>PhoneEditWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TaskEditControl.xaml.cs">
+    <Compile Include="View\TaskEditControl.xaml.cs">
       <DependentUpon>TaskEditControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TasksControl.xaml.cs">
+    <Compile Include="View\TasksControl.xaml.cs">
       <DependentUpon>TasksControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="DayStatsWindow.xaml">
+    <Page Include="View\DayStatsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -84,33 +84,33 @@
     </Compile>
     <Compile Include="API\DaysRepo.cs" />
     <Compile Include="API\TaskData.cs" />
-    <Compile Include="PhonesControl.xaml.cs">
+    <Compile Include="View\PhonesControl.xaml.cs">
       <DependentUpon>PhonesControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TaskEditWindow.xaml.cs">
+    <Compile Include="View\TaskEditWindow.xaml.cs">
       <DependentUpon>TaskEditWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PhoneEditWindow.xaml">
+    <Page Include="View\PhoneEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PhonesControl.xaml">
+    <Page Include="View\PhonesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TaskEditControl.xaml">
+    <Page Include="View\TaskEditControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TaskEditWindow.xaml">
+    <Page Include="View\TaskEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TasksControl.xaml">
+    <Page Include="View\TasksControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
