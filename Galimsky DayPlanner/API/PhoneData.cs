@@ -14,14 +14,8 @@ namespace Galimsky_DayPlanner
             get { return _number; }
             set
             {
-                if (Tools.ValidatePhoneNumber(value,true))
-                {
-                    _number = value;
-                    RaisePropertyChanged("Number");
-                }else
-                {
-                    throw new System.Exception($"{value} is not a phone number");
-                }
+                _number = value;
+                RaisePropertyChanged("Number");
             }
         }
 
