@@ -10,11 +10,30 @@
       <text>this is another task</text>
       <IsDone />
     </task>
+    <task DateTime="2021-03-20T19:33:00">
+      <header>task</header>
+      <text>tetwetew</text>
+      <IsDone />
+    </task>
+    <task DateTime="2021-03-20T19:43:00">
+      <header>ewewew</header>
+      <text>wewewsdfsfsd</text>
+    </task>
+    <task DateTime="2021-03-19T14:39:00">
+      <header>New anime ongoing</header>
+      <text></text>
+    </task>
   </tasks>
   <phones>
     <phone>
-      <number>89992282424</number>
+      <number>999-228-2424</number>
       <name>Agent Smith</name>
+      <code>+7</code>
+    </phone>
+    <phone>
+      <number>224-225-2424</number>
+      <name>Korbin Dalas</name>
+      <code>+7</code>
     </phone>
   </phones>
 </data>

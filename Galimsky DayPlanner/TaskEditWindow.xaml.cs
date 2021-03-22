@@ -12,10 +12,14 @@ namespace Galimsky_DayPlanner
             InitializeComponent();
         }
 
-        public void Configure(TaskEditorMode mode)
+        public void Configure(EditorMode mode)
         {
             taskEditControl.Configure(mode);
         }
 
+        private void taskEditWindow_Closed(object sender, System.EventArgs e)
+        {
+            DaysRepo.Instance.ItemsView.Refresh();
+        }
     }
 }

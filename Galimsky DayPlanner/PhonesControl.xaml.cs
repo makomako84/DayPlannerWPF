@@ -14,6 +14,14 @@ namespace Galimsky_DayPlanner
             DataContext = PhonesRepo.Instance;
         }
 
+        private void OpenPhoneEdit(EditorMode mode)
+        {
+            PhoneEditWindow phoneEditWindow = new PhoneEditWindow();
+            phoneEditWindow.Owner = Application.Current.MainWindow;
+            phoneEditWindow.Configure(mode);
+            phoneEditWindow.ShowDialog();
+        }
+
         private void PhonesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0)
@@ -22,11 +30,22 @@ namespace Galimsky_DayPlanner
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            PhonesRepo.Instance.Phones.Add(PhoneData.Create());
+            OpenPhoneEdit(EditorMode.New);
         }
 
-        private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
+        private void PhonesList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            OpenPhoneEdit(EditorMode.Edit);
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            OpenPhoneEdit(EditorMode.Edit);
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PhonesRepo.Instance.FilterString = FilterBox.Text;
             PhonesRepo.Instance.ItemsView.Refresh();
         }
     }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -58,12 +54,23 @@ namespace Galimsky_DayPlanner
                 RaisePropertyChanged("SelectedPhone");
             }
         }
+
+        private string _filterString;
+        public string FilterString
+        {
+            get { return _filterString; }
+            set
+            {
+                _filterString = value;
+                RaisePropertyChanged("FilterString");
+            }
+        }
         #endregion
 
         #region ctor
         public PhonesRepo()
         {
-
+            FilterString = "";
         }
         #endregion
 
@@ -98,8 +105,17 @@ namespace Galimsky_DayPlanner
             }
         }
 
+        public bool Filter(string name)
+        {
+            if (String.IsNullOrEmpty(name))
+                return true;
+            else
+                return name.IndexOf(FilterString, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
         public void ItemsViewInit()
         {
+            ItemsView.Filter = new Predicate<object>(phone => Filter((phone as PhoneData).Name));
             ItemsView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
         }
         #endregion

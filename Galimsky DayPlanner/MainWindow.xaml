@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Galimsky_DayPlanner"
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="535.3">
+        Title="MainWindow" Height="535.3" Closed="Window_Closed">
     <!--<Window.Resources>
         <ObjectDataProvider x:Key="dayTaskList" ObjectType="{x:Type local:DaysRepo}" MethodName="GetTasks"/>
     </Window.Resources>-->
@@ -21,6 +21,9 @@
                 <MenuItem x:Name="menuItem_save" Header="Save" Click="menuItem_save_Click"/>
                 <Separator/>
                 <MenuItem x:Name="menuItem_exit" Header="Exit" Click="menuItem_exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Stats">
+                <MenuItem x:Name="MenuItem_DayStats" Header="Current Day Stats" Click="MenuItem_DayStats_Click"/>
             </MenuItem>
         </Menu>
         <TabControl Grid.Row="1">

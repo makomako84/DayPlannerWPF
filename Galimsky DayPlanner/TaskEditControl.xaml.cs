@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Galimsky_DayPlanner
 {
-    public enum TaskEditorMode { New, Edit }
+    public enum EditorMode { New, Edit }
     /// <summary>
     /// Interaction logic for TaskEditControl.xaml
     /// </summary>
@@ -22,7 +22,7 @@ namespace Galimsky_DayPlanner
 
         #endregion
 
-        private TaskEditorMode _taskEditorMode;
+        private EditorMode _taskEditorMode;
 
         private TaskData _selection;
         public TaskData Selection
@@ -51,19 +51,19 @@ namespace Galimsky_DayPlanner
             InitializeComponent();
         }
 
-        public void Configure(TaskEditorMode taskEditorMode)
+        public void Configure(EditorMode taskEditorMode)
         {
             _taskEditorMode = taskEditorMode;
 
             InitializeComponent();
             DataContext = this;
 
-            if (_taskEditorMode == TaskEditorMode.Edit)
+            if (_taskEditorMode == EditorMode.Edit)
             {
                 Selection = DaysRepo.Instance.DayTaskListSelection;
                 EditedDateProp = new EditableDate(Selection.Time);
             }
-            else if (_taskEditorMode == TaskEditorMode.New)
+            else if (_taskEditorMode == EditorMode.New)
             {
                 Selection = TaskData.CreateTempTask(DaysRepo.Instance.SelectedDate);
                 EditedDateProp = new EditableDate(Selection.Time);
@@ -72,24 +72,17 @@ namespace Galimsky_DayPlanner
 
         private void SaveTask()
         {
-            if (_taskEditorMode == TaskEditorMode.Edit)
+            if (_taskEditorMode == EditorMode.Edit)
             {
                 TaskData foundTask = DaysRepo.Instance.Tasks.Where(x => x.Id == Selection.Id).ToList()[0];
                 foundTask.Header = Selection.Header;
                 foundTask.Text = Selection.Text;
                 foundTask.Time = EditableDate.GetFullDateTime(Selection.Time, EditedDateProp);
             }
-            else if (_taskEditorMode == TaskEditorMode.New)
+            else if (_taskEditorMode == EditorMode.New)
             {
                 DaysRepo.Instance.Tasks.Add(TaskData.Create(Selection.Header, Selection.Text, EditableDate.GetFullDateTime(Selection.Time, EditedDateProp), Selection.IsDone));
             }
-        }
-
-
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            DaysRepo.Instance.ItemsView.Refresh();
         }
 
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
