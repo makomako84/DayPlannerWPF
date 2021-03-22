@@ -22,6 +22,9 @@
                 <Separator/>
                 <MenuItem x:Name="menuItem_exit" Header="Exit" Click="menuItem_exit_Click"/>
             </MenuItem>
+            <MenuItem Header="Stats">
+                <MenuItem x:Name="MenuItem_DayStats" Header="Current Day Stats" Click="MenuItem_DayStats_Click"/>
+            </MenuItem>
         </Menu>
         <TabControl Grid.Row="1">
             <TabItem Header="Tasks">

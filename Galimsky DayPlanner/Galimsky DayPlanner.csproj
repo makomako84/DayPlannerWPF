@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DayStatsWindow.xaml.cs">
+      <DependentUpon>DayStatsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PhoneEditWindow.xaml.cs">
       <DependentUpon>PhoneEditWindow.xaml</DependentUpon>
     </Compile>
@@ -64,6 +67,10 @@
     <Compile Include="TasksControl.xaml.cs">
       <DependentUpon>TasksControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="DayStatsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

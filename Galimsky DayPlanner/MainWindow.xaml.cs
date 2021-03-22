@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-
+using System.Linq;
 namespace Galimsky_DayPlanner
 {
     /// <summary>
@@ -31,6 +31,17 @@ namespace Galimsky_DayPlanner
         private void Window_Closed(object sender, System.EventArgs e)
         {
             SaveData();
+        }
+
+        private void MenuItem_DayStats_Click(object sender, RoutedEventArgs e)
+        {
+            DayStatsWindow dayStats = new DayStatsWindow();
+            dayStats.Date = DaysRepo.Instance.SelectedDate;
+            dayStats.StatMessage = DaysRepo.Instance.Tasks.Count(task => task.Time.Date == DaysRepo.Instance.SelectedDate && task.IsDone).ToString() 
+                + " / " 
+                + DaysRepo.Instance.Tasks.Count(task => task.Time.Date == DaysRepo.Instance.SelectedDate).ToString();
+            dayStats.ShowDialog();
+            
         }
     }
 }
