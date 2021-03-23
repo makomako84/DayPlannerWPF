@@ -78,12 +78,7 @@ namespace Galimsky_DayPlanner
         }
         public bool Filter(DateTime dt)
         {
-            return CompareDate(dt, SelectedDate);
-        }
-
-        private bool CompareDate(DateTime dt1, DateTime dt2)
-        {
-            return dt1.Year == dt2.Year && dt1.Month == dt2.Month && dt1.Day == dt2.Day;
+            return dt.Year == SelectedDate.Year && dt.Month == SelectedDate.Month && dt.Day == SelectedDate.Day;
         }
 
         public void ItemsViewInit()

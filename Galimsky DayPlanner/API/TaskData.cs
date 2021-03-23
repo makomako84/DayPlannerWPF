@@ -115,8 +115,6 @@ namespace Galimsky_DayPlanner
         protected void RaisePropertyChanged(string propName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-            //if(DaysRepo.Instance.ItemsView!=null)
-            //    DaysRepo.Instance.ItemsView.Refresh();
         }
         #endregion
     }
