@@ -23,6 +23,10 @@
       <header>New anime ongoing</header>
       <text></text>
     </task>
+    <task DateTime="2021-03-23T15:05:00">
+      <header>Приступить к другой работе</header>
+      <text>Описание</text>
+    </task>
   </tasks>
   <phones>
     <phone>
@@ -34,6 +38,11 @@
       <number>224-225-2424</number>
       <name>Korbin Dalas</name>
       <code>+7</code>
+    </phone>
+    <phone>
+      <number>555-255-2424</number>
+      <name>Agent Orange</name>
+      <code>+5</code>
     </phone>
   </phones>
 </data>
